@@ -3,7 +3,7 @@ import { Form, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Validator from 'validator';
 import InlineError from '../messages/InlineError';
-import { ar_email, ar_password } from '../../ar/form';
+import { arInput } from '../../ar/form';
 
 class LoginForm extends Component {
   constructor(props){
@@ -44,7 +44,7 @@ class LoginForm extends Component {
     return (
       <Form onSubmit={this.onSubmit.bind(this)}>
         <Form.Field error={!!errors.email}>
-          <label htmlFor="email">{ar_email}</label>
+          <label htmlFor="email">{arInput.arEmail}</label>
           <input type="email" id="email" name="email"
             placeholder="exmaple@example.com"
             value={data.email}
@@ -54,7 +54,7 @@ class LoginForm extends Component {
         </Form.Field>
 
         <Form.Field error={!!errors.password}>
-          <label htmlFor="password">{ar_password}</label>
+          <label htmlFor="password">{arInput.arPassword}</label>
           <input type="password" id="password" name="password"
             placeholder="secure"
             value={data.password}
@@ -69,8 +69,8 @@ class LoginForm extends Component {
   }
 }
 
-LoginForm.PropTypes = {
-  
+LoginForm.propTypes = {
+  submit: PropTypes.func.isRequired,
 }
 
 export default LoginForm;
