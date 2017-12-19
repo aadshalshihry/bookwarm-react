@@ -1,2 +1,8 @@
-export const ar_email         = "البريد الأكتروني";
-export const ar_password      = "كلمة المرور";
+
+export const arInput = {
+  arEmail: "البريد الأكتروني",
+  arPassword: "كلمة المرور"
+}
+
+
+export default arInput;
