@@ -21,3 +21,9 @@ export const logout = () => dispatch =>{
     localStorage.removeItem('arabsandboxJWT');
     dispatch(userLoggedOut());
 };
+
+export const confirm = (token) => (dispatch) =>
+  api.user.confirm(token).then(user => {
+    localStorage.arabsandboxJWT = user.token;
+    dispatch(userLoggedIn(user))
+  });
