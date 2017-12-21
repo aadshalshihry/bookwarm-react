@@ -27,3 +27,12 @@ export const confirm = (token) => (dispatch) =>
     localStorage.arabsandboxJWT = user.token;
     dispatch(userLoggedIn(user))
   });
+
+export const resetPasswordRequest = ({ email }) => () =>
+  api.user.resetPasswordRequest(email)
+
+export const validateToken = (token) => () =>
+  api.user.validateToken(token)
+
+export const setNewPassword = (data) => () =>
+  api.user.setNewPassword(data)

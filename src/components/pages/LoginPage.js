@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import LoginForm from '../forms/LoginForm';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import LoginForm from '../forms/LoginForm';
 import { login } from '../../actions/auth';
 
 class LoginPage extends Component {
   submit = data =>
-    this.props.login(data).then(() => this.props.history.push("/dashboard"));
+    this.props.login(data)
+      .then(() => this.props.history.push("/dashboard"));
 
 
   render() {
@@ -15,6 +17,7 @@ class LoginPage extends Component {
         <h1>Login Page</h1>
 
         <LoginForm submit={this.submit} />
+        <Link to="/forget_password">Forget Password</Link>
       </div>
     );
   }
