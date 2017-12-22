@@ -10,6 +10,7 @@ import decode from 'jwt-decode';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/rootReducer';
 import { userLoggedIn } from './actions/auth';
+import setAuthorizationHeader from './utils/setAuthorizationHeader';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -23,6 +24,7 @@ if (localStorage.arabsandboxJWT) {
     email: payload.email,
     confirmed: payload.confirmed
   };
+  setAuthorizationHeader(localStorage.arabsandboxJWT);
   store.dispatch(userLoggedIn(user));
 }
 
