@@ -1,13 +1,12 @@
-// import {  } from '../actions/types';
+import { BOOK_FETCHED, BOOK_CREATED } from '../actions/types';
 import { createSelector } from 'reselect';
 
 export default function books(state = {}, action = {}) {
   switch (action.type) {
-    // case USER_LOGGED_IN:
-    //   return action.user;
 
-    // case USER_LOGGED_OUT:
-    //   return {};
+    case BOOK_FETCHED:
+    case BOOK_CREATED:
+      return {...state, ...action.data.entities.books };
 
     default:
       return state;

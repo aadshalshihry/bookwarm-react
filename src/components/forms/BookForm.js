@@ -4,21 +4,18 @@ import PropTypes from 'prop-types';
 import InlineError from '../messages/InlineError';
 
 class BookForm extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      data: {
-        goodreadsId: this.props.book.goodreadsId,
-        title: this.props.book.title,
-        authors: this.props.book.authors,
-        cover: this.props.book.covers[0],
-        pages: this.props.book.pages
-      },
-      covers: this.props.book.covers,
-      loading: false,
-      errors: {}
-    };
-  }
+  state = {
+    data: {
+      goodreadsId: this.props.book.goodreadsId,
+      title: this.props.book.title,
+      authors: this.props.book.authors,
+      cover: this.props.book.covers[0],
+      pages: this.props.book.pages
+    },
+    covers: this.props.book.covers,
+    loading: false,
+    errors: {}
+  };
 
   componentWillReceiveProps(props) {
     this.setState({
@@ -34,25 +31,27 @@ class BookForm extends Component {
     })
   }
 
-  onChange(e){
+  onChange = e => {
     this.setState({
       data: { ...this.state.data, [e.target.name]: e.target.value }
     });
   }
-  onChangeNumber(e){
+
+  onChangeNumber = e =>{
     this.setState({
       data: { ...this.state.data, [e.target.name]: parseInt(e.target.value) }
     });
   }
 
-  onSubmit = () => {
+  onSubmit = e => {
+    e.preventDefault();
     const errors = this.validate(this.state.data);
     this.setState({ errors });
     if(Object.keys(errors).length === 0){
       this.props.submit(this.state.data)
-      .catch(err =>
-          this.setState({ errors: err.response.data.errors, loading: false })
-        );
+      .catch(err =>{
+        this.setState({ errors: err.response.data.errors, loading: false })
+      });
     }
   }
 
@@ -102,8 +101,9 @@ class BookForm extends Component {
 
                 <Form.Field error={!!errors.pages}>
                   <label htmlFor="pages">Pages</label>
-                  <input type="number" id="pages" name="pages"
-                    value={data.pages}
+                  <input type="text" id="pages" name="pages"
+                    disabled={data.pages === undefined}
+                    value={data.pages !== undefined ? data.pages : "Loading..."}
                     onChange={this.onChangeNumber}
                   />
                   {errors.pages && <InlineError text={errors.pages} />}
@@ -136,7 +136,7 @@ BookForm.propTypes = {
     title: PropTypes.string.isRequired,
     authors: PropTypes.string.isRequired,
     covers: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    pages: PropTypes.number.isRequired
+    pages: PropTypes.number
   }).isRequired
 }
 
