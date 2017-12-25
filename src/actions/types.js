@@ -4,3 +4,5 @@ export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
 
 export const BOOK_FETCHED = "BOOK_FETCHED";
 export const BOOK_CREATED = "BOOK_CREATED";
+export const BOOK_MAKE_FINISH = "BOOK_MAKE_FINISH";
+export const BOOK_REMOVED = "BOOK_REMOVED";

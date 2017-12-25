@@ -23,6 +23,12 @@ export default {
       axios.get('/api/books').then(res => res.data.books),
 
     create: book =>
-      axios.post('/api/books', { book }).then(res => res.data.book)
+      axios.post('/api/books', { book }).then(res => res.data.book),
+
+    makeBookFinish: book =>
+      axios.post('/api/books/finish', { book }).then(res => res.data.book),
+
+    removeBook: book =>
+      axios.post('/api/books/remove', { book }).then(res => res.data.book)
   }
 };

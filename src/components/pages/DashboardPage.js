@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import ConfirmEmailMessage from '../messages/ConfirmEmailMessage';
 import {allBooksSelector} from '../../reducers/books';
 import AddBookCtA from '../ctas/AddBookCtA';
+import ShowBookCtA from '../ctas/ShowBookCtA';
 import { fetchBooks } from '../../actions/book';
 
 
@@ -20,7 +21,9 @@ class DashboardPage extends Component {
       <div>
         {!isConfirmed && <ConfirmEmailMessage/>}
 
-        {books.length === 0 ? <AddBookCtA/> : <p>You have books!</p>}
+        {books.length === 0 ?
+          <AddBookCtA /> :
+          <ShowBookCtA />}
       </div>
     );
   }
