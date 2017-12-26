@@ -6,7 +6,8 @@ export default {
       axios.post('/api/auth', { credentials }).then(res => res.data.user),
 
     signup: user =>
-      axios.post('/api/users', { user }).then(res => res.data.user),
+      axios.post('/api/users', { user })
+        .then(res => res.data.user),
 
     confirm: token =>
       axios.post('/api/auth/confirmation', { token }).then(res => res.data.user),
@@ -29,6 +30,7 @@ export default {
       axios.post('/api/books/finish', { book }).then(res => res.data.book),
 
     removeBook: book =>
-      axios.post('/api/books/remove', { book }).then(res => res.data.book)
+      axios.post('/api/books/remove', { book })
+        .then(res => res.data.books)
   }
 };

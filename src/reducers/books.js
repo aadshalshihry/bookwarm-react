@@ -8,11 +8,8 @@ export default function books(state = {}, action = {}) {
     case BOOK_CREATED:
     case BOOK_MAKE_FINISH:
       return {...state, ...action.data.entities.books };
-
     case BOOK_REMOVED:
-      let newState = Object.assign({}, state);
-      delete newState[action.data._id]
-      return {...newState}
+      return {...action.data.entities.books };
 
     default:
       return state;

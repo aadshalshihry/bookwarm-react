@@ -39,7 +39,8 @@ export const makeBookFinish = (data) => (dispatch) =>
   api.books.makeBookFinish(data).then(book =>
     dispatch(bookFinished(normalize(book, bookSchema))));
 
-export const removeBook = (data) => (dispatch) =>
-  api.books.removeBook(data).then(book => {
-    dispatch(bookRemoved(normalize(book, bookSchema)))
+export const removeBook = (data) => (dispatch) => {
+  api.books.removeBook(data).then(books => {
+    dispatch(bookRemoved(normalize(books, [bookSchema])));
   });
+}

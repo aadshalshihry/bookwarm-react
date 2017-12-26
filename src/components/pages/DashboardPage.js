@@ -16,14 +16,13 @@ class DashboardPage extends Component {
 
   render() {
     const {isConfirmed, books} = this.props;
-
     return (
       <div>
         {!isConfirmed && <ConfirmEmailMessage/>}
 
         {books.length === 0 ?
           <AddBookCtA /> :
-          <ShowBookCtA />}
+          <ShowBookCtA books={books} />}
       </div>
     );
   }

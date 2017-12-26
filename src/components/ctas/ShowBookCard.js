@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, Card, Button } from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
+import BookBtnHandler from './BookBtnHandler';
 
 
 
-const ShowBookCard = ({ book, onFinish, onDelete, loading }) => (
+const ShowBookCard = ({ book, history }) => (
   <Card>
     <Card.Content >
       <Image floated='right' size='tiny' src={book.cover} />
@@ -20,23 +21,18 @@ const ShowBookCard = ({ book, onFinish, onDelete, loading }) => (
     </Card.Content>
     <Card.Content extra>
       <div className='ui two buttons'>
-        <Button basic color='green' onClick={onFinish} loading={loading}>Finish</Button>
-        <Button basic color='red' onClick={onDelete} loading={loading}>Remove</Button>
+        <BookBtnHandler finish book={book} />
+        <BookBtnHandler remove book={book} />
       </div>
     </Card.Content>
   </Card>
 );
 
 
-
-
 ShowBookCard.propTypes = {
   book: PropTypes.shape({
       title: PropTypes.string.isRequired
-    }).isRequired,
-  onFinish: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+    }).isRequired
 }
 
 export default ShowBookCard;

@@ -27,7 +27,7 @@ class NewBookPage extends Component {
   render() {
     return (
       <Segment>
-        <h1>Add new book to your collection</h1>
+        <h2>Add new book to your collection</h2>
         <SearchBookForm onBookSelect={this.onBookSelect} />
 
         {this.state.book && (
@@ -44,5 +44,11 @@ NewBookPage.propTypes = {
    push: PropTypes.func.isRequired
  }).isRequired
 };
+
+function mapStateToProps(state) {
+  return {
+    // userId: state.users._id
+  }
+}
 
 export default connect(null, { createBook })(NewBookPage);

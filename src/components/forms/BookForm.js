@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Segment, Grid, Image } from 'semantic-ui-react';
+import { Form, Button, Segment, Grid, Image, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import InlineError from '../messages/InlineError';
 
@@ -76,6 +76,12 @@ class BookForm extends Component {
     return (
       <Segment>
         <Form onSubmit={this.onSubmit} loading={loading}>
+          {errors.global && (
+            <Message negative>
+              <Message.Header>Something went wrong</Message.Header>
+              <p>{errors.global}</p>
+            </Message>
+          )}
           <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
