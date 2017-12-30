@@ -13,10 +13,6 @@ class BookBtnHandler extends Component {
     onRemoveLoading: false,
   };
 
-  onFinishHandler = (e) => {
-    console.log("OnFinishHandler");
-  }
-
   onRemoveHandler = (e) => {
     this.setState({ onRemoveLoading: true });
     this.props.removeBook(this.props.book)
@@ -28,7 +24,7 @@ class BookBtnHandler extends Component {
     const { finish, remove } = this.props;
     if (finish) {
       return (
-        <Button basic color='green' onClick={this.onFinishHandler} loading={onFinishLoading}>Finish</Button>
+        <Button basic color='green' onClick={this.props.onFinishHandler} loading={onFinishLoading}>Finish</Button>
       );
     } else {
       return (
