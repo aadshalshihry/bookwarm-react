@@ -1,49 +1,49 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react'
-import { removeBook } from '../../actions/book';
 
 class BookBtnHandler extends Component {
   state = {
-    data: {
-      book: this.props.book
-    },
+    book: this.props.book,
     onFinishLoading: false,
     onRemoveLoading: false,
   };
 
-  onRemoveHandler = (e) => {
-    this.setState({ onRemoveLoading: true });
-    this.props.removeBook(this.props.book)
-    this.setState({ onRemoveLoading: false });
+  onRemoveHandler = (id) => {
+    this.props.history.push(`/books/delete/?id=${id}`);
   }
 
   render() {
-    const { onFinishLoading, onRemoveLoading } = this.state;
-    const { finish, remove } = this.props;
+    const { onFinishLoading } = this.state;
+    const { finish } = this.props;
+    const { book } = this.props;
     if (finish) {
       return (
-        <Button basic color='green' onClick={this.props.onFinishHandler} loading={onFinishLoading}>Finish</Button>
-      );
-    } else {
-      return (
-        <Button basic color='red' onClick={this.onRemoveHandler} loading={onRemoveLoading}>Remove</Button>
+        <Button basic color='green'
+          onClick={this.props.onFinishHandler} 
+          loading={onFinishLoading}>Finish</Button>
       );
     }
-
+      return (
+        <Button basic color='red'
+          onClick={() => this.onRemoveHandler(book._id)}>
+        Remove</Button>
+      );
   }
 }
+
 
 BookBtnHandler.propTypes = {
   book: PropTypes.shape({
     title: PropTypes.string.isRequired
   }).isRequired,
-  finish: PropTypes.bool,
-  remove: PropTypes.bool,
-  removeBook: PropTypes.func.isRequired
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
+  onFinishHandler: PropTypes.func,
+  finish: PropTypes.bool.isRequired,
 }
 
 
 
-export default connect(null, { removeBook })(BookBtnHandler);
+export default BookBtnHandler;

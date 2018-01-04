@@ -6,3 +6,5 @@ export const BOOK_FETCHED = "BOOK_FETCHED";
 export const BOOK_CREATED = "BOOK_CREATED";
 export const BOOK_MAKE_FINISH = "BOOK_MAKE_FINISH";
 export const BOOK_REMOVED = "BOOK_REMOVED";
+
+export const BOOK_FINISHED = "BOOK_FINISHED";

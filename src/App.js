@@ -10,6 +10,7 @@ import DashboardPage from './components/pages/DashboardPage';
 import ForgetPasswordPage from './components/pages/ForgetPasswordPage';
 import ResetPasswordPage from './components/pages/ResetPasswordPage';
 import NewBookPage from './components/pages/NewBookPage';
+import DeleteConformation from './components/pages/DeleteConformation';
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
 import TopNavigation from './components/TopNavigation';
@@ -25,6 +26,7 @@ const App = ({location, isAuthenticated}) => (
     <GuestRoute location={location} path="/reset_password/:token" exact component={ResetPasswordPage} />
     <UserRoute location={location} path="/dashboard" exact component={DashboardPage} />
     <UserRoute location={location} path="/books/new" exact component={NewBookPage} />
+    <UserRoute location={location} path="/books/delete/" exact component={DeleteConformation} />
   </div>
 );
 

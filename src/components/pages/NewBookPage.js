@@ -45,10 +45,5 @@ NewBookPage.propTypes = {
  }).isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    // userId: state.users._id
-  }
-}
 
 export default connect(null, { createBook })(NewBookPage);

@@ -1,0 +1,14 @@
+#finishedCard {
+	position: absolute;
+  	top: 0;
+  	left: 0;
+	color: green;
+	width: 290px;
+	height: 205px;
+	background: #000;
+	text-align: center;
+	opacity: 0.4;
+	z-index: 100;
+	font-size: 120px;
+	padding-top: 40px;
+}

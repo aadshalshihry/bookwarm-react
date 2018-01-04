@@ -1,5 +1,5 @@
-import { BOOK_FETCHED, BOOK_CREATED, BOOK_MAKE_FINISH, BOOK_REMOVED } from '../actions/types';
-import { createSelector } from 'reselect';
+import {createSelector} from 'reselect';
+import {BOOK_FETCHED, BOOK_CREATED, BOOK_MAKE_FINISH, BOOK_REMOVED} from '../actions/types';
 
 export default function books(state = {}, action = {}) {
   switch (action.type) {
@@ -7,9 +7,12 @@ export default function books(state = {}, action = {}) {
     case BOOK_FETCHED:
     case BOOK_CREATED:
     case BOOK_MAKE_FINISH:
-      return {...state, ...action.data.entities.books };
+      return {
+        ...state,
+        ...action.data.entities.books
+      };
     case BOOK_REMOVED:
-      return {...action.data.entities.books };
+      return Object.assign({}, action.data.entities.books);
 
     default:
       return state;
@@ -21,8 +24,4 @@ export default function books(state = {}, action = {}) {
 
 export const booksSelector = state => state.books;
 
-export const allBooksSelector = createSelector(
-  booksSelector,
-  booksHash => Object.values(booksHash)
-)
-
+export const allBooksSelector = createSelector(booksSelector, booksHash => Object.values(booksHash))
